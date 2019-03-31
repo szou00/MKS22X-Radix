@@ -11,10 +11,10 @@ public class MyLinkedList<E> {
      private Node next,prev;
 
      //constructors
-     public Node(int x) {
+     public Node(E x) {
        data = x;
      }
-     public Node(int x, Node nextN, Node prevN) {
+     public Node(E x, Node nextN, Node prevN) {
        data = x;
        next = nextN;
        prev = prevN;
@@ -106,7 +106,7 @@ public class MyLinkedList<E> {
        throw new IndexOutOfBoundsException();
      }
      Node current = getNthNode(index); //finds the node at the desired index
-     Integer currentData = current.getData(); //stores the original value of the node
+     E currentData = current.getData(); //stores the original value of the node
      current.setData(value); //sets the original value to the new one
      return currentData; //returns the old value
    }
@@ -196,7 +196,7 @@ public class MyLinkedList<E> {
 
    //removes the first occurence of a value in the list
    //returns true if removed successfully, false if not
-   public boolean remove(Integer value) {
+   public boolean remove(E value) {
      if (!contains(value)) { //throws an exception if the value can't be found
        return false;
      }
@@ -204,6 +204,12 @@ public class MyLinkedList<E> {
        remove(indexOf(value)); //finds the first index of the value within the list and uses the previous remove function to remove the node of the value
        return true;
      }
+   }
+
+   //removes the front
+   public E removeFront() {
+     E removed = remove(0); //just calls the remove method for the first index
+     return removed;
    }
 
    public void clear() {
