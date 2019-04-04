@@ -19,7 +19,7 @@ public class Driver {
 
     //testing Radix
     Radix test3r = new Radix();
-    int[] test3 = {103,45,42, 47, 241,861,359,175,920,4};
+    int[] test3 = {103,45,42, 47, 241,861,359,175,920,4,-891};
     test3r.radixsort(test3);
   }
 }
