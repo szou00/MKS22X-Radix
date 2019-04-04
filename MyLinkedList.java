@@ -174,8 +174,10 @@ public class MyLinkedList<E> {
     else {
       Node removed = getNthNode(index); //finds the node that is going to be removed
       if (index == 0) { //special case: removing from the beg of the list
-        start = removed.getNext(); //start gets the node after the node that is about to be removed
-        start.setPrev(null); //the new start sets its prev to null
+        if (size() > 1) { //checks if there's more than one value in the list
+          start = removed.getNext(); //start gets the node after the node that is about to be removed
+          start.setPrev(null); //the new start sets its prev to null
+        }
         size -= 1; //size decreases by one
       }
       else {
@@ -185,8 +187,10 @@ public class MyLinkedList<E> {
           size -= 1; //size deceases by one
         }
         else { //special case: removing from the end of the list
-          end = removed.getPrev(); //the node before the removed node becomes the new end
-          end.setNext(null); //the next of the new end is set to null
+          if (size() > 1) { //checks if there's more than one element
+            end = removed.getPrev(); //the node before the removed node becomes the new end
+            end.setNext(null); //the next of the new end is set to null
+          }
           size -= 1; //size decreases by one
         }
       }
