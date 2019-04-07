@@ -21,15 +21,15 @@ public class Radix {
         max = data[i];
       }
     }
-    System.out.println(max);
+    // System.out.println(max);
 
     //finds the number of digits in max
     int md = 1; //including the digit that's below 10
-    while (max > 10) {
+    while (Math.abs(max) > 10) {
       md++;
       max=max/10;
     }
-    // System.out.println(d);
+    System.out.println(md);
 
     //initializing all the buckets
     for (int i = 0; i < buckets.length; i++) {
