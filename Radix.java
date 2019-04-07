@@ -26,10 +26,7 @@ public class Radix {
 
     //finds the number of digits in max
     int md = 1; //including the digit that's below 10
-    while (Math.abs(max) > 10) {
-      md++;
-      max=max/10;
-    }
+    md += (int)Math.log10(Math.abs(max));
     // System.out.println(md);
 
     //initializing all the buckets
@@ -123,7 +120,7 @@ public class Radix {
   public static void merge(MyLinkedList<Integer>[] buckets, MyLinkedList<Integer> sorted) {
 
     //removes all the old elements in the array
-    sorted.clear();
+    // sorted.clear();
 
     for (int x = 0; x < buckets.length; x++) { //going through the buckets
     //   // System.out.println("buckets " + x + " " + buckets[x].toString());
