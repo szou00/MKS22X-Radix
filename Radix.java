@@ -9,19 +9,19 @@ public class Radix {
     //create linkedlist for all of them?
 
     //make an array of mylinkedlist for the buckets
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked","rawtypes"})
     MyLinkedList<Integer>[] buckets = new MyLinkedList[20];
     MyLinkedList<Integer> sorted = new MyLinkedList<Integer>();
 
     //go through the list and find max number
     //FIND ABSOLUTE VALUE !!! REMEMBER
-    int max = Math.abs(data[0]);
+    int max = data[0];
     for (int i = 0; i < data.length; i++) {
-      if (Math.abs(data[i]) > max) {
+      if (Math.abs(data[i]) > Math.abs(max)) {
         max = data[i];
       }
     }
-    // System.out.println(max);
+    System.out.println(max);
 
     //finds the number of digits in max
     int md = 1; //including the digit that's below 10
@@ -41,7 +41,7 @@ public class Radix {
     for (int x = 0; x < data.length; x++) {
       int b = data[x]%10; //getting their first digit
       if (b >= 0) {
-        buckets[b+10].add(data[x]); //adding ifor pos nums
+        buckets[b+10].add(data[x]); //adding for pos nums
       }
       else {
         buckets[9-Math.abs(b)].add(data[x]); //adding for neg numbers
@@ -84,6 +84,9 @@ public class Radix {
     //   // }
     // }
     // System.out.println(sorted.toString());
+    for (int i = 0; i < sorted.size(); i++) {
+      data[i] = sorted.get(i);
+    }
 
   }
 
@@ -109,38 +112,39 @@ public class Radix {
 
   //testing from k's website
    public static void main(String[]args){
-    System.out.println("Size\t\tMax Value\tradix/builtin ratio ");
-    int[]MAX_LIST = {1000000000,500,10};
-    for(int MAX : MAX_LIST){
-      for(int size = 31250; size < 2000001; size*=2){
-        long qtime=0;
-        long btime=0;
-        //average of 5 sorts.
-        for(int trial = 0 ; trial <=5; trial++){
-          int []data1 = new int[size];
-          int []data2 = new int[size];
-          for(int i = 0; i < data1.length; i++){
-            data1[i] = (int)(Math.random()*MAX);
-            data2[i] = data1[i];
-          }
-          long t1,t2;
-          t1 = System.currentTimeMillis();
-          Radix.radixsort(data2);
-          t2 = System.currentTimeMillis();
-          qtime += t2 - t1;
-          t1 = System.currentTimeMillis();
-          Arrays.sort(data1);
-          t2 = System.currentTimeMillis();
-          btime+= t2 - t1;
-          if(!Arrays.equals(data1,data2)){
-            System.out.println("FAIL TO SORT!");
-            System.exit(0);
-          }
-        }
-        System.out.println(size +"\t\t"+MAX+"\t"+1.0*qtime/btime);
-      }
-      System.out.println();
-    }
+
+  //   System.out.println("Size\t\tMax Value\tradix/builtin ratio ");
+  //   int[]MAX_LIST = {1000000000,500,10};
+  //   for(int MAX : MAX_LIST){
+  //     for(int size = 31250; size < 2000001; size*=2){
+  //       long qtime=0;
+  //       long btime=0;
+  //       //average of 5 sorts.
+  //       for(int trial = 0 ; trial <=5; trial++){
+  //         int []data1 = new int[size];
+  //         int []data2 = new int[size];
+  //         for(int i = 0; i < data1.length; i++){
+  //           data1[i] = (int)(Math.random()*MAX);
+  //           data2[i] = data1[i];
+  //         }
+  //         long t1,t2;
+  //         t1 = System.currentTimeMillis();
+  //         Radix.radixsort(data2);
+  //         t2 = System.currentTimeMillis();
+  //         qtime += t2 - t1;
+  //         t1 = System.currentTimeMillis();
+  //         Arrays.sort(data1);
+  //         t2 = System.currentTimeMillis();
+  //         btime+= t2 - t1;
+  //         if(!Arrays.equals(data1,data2)){
+  //           System.out.println("FAIL TO SORT!");
+  //           System.exit(0);
+  //         }
+  //       }
+  //       System.out.println(size +"\t\t"+MAX+"\t"+1.0*qtime/btime);
+  //     }
+  //     System.out.println();
+  //   }
   }
 
 }
