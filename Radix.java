@@ -5,11 +5,9 @@ import java.util.Random;
 public class Radix {
 
   public static void radixsort(int[]data){
-    //sort the first digit
-
-    //create linkedlist for all of them?
 
     //make an array of mylinkedlist for the buckets
+    //and an array to keep track of the sorted
     @SuppressWarnings({"unchecked","rawtypes"})
     MyLinkedList<Integer>[] buckets = new MyLinkedList[20];
     MyLinkedList<Integer> sorted = new MyLinkedList<Integer>();
@@ -58,6 +56,7 @@ public class Radix {
         while (sorted.size() > 0) {
           int n = sorted.removeFront();
 
+          //getting the right digit
           int b = n/((int)Math.pow(10,x));
           b = b%10;
           // System.out.println(b);
@@ -81,10 +80,11 @@ public class Radix {
     //   // }
     // }
     // System.out.println(sorted.toString());
-    for (int i = 0; i < sorted.size(); i++) {
-      data[i] = sorted.get(i);
+    int ind = 0;
+    while (sorted.size() > 0) { //while there are still values in the array
+      data[ind] = sorted.removeFront(); //add this value back to previous array
+      ind++;
     }
-
   }
 
   //merging
@@ -92,10 +92,10 @@ public class Radix {
   public static void merge(MyLinkedList<Integer>[] buckets, MyLinkedList<Integer> sorted) {
 
     //removes all the old elements in the array
-    for (int x = 0; x < buckets.length; x++) { //going through the buckets
+    for (int a = 0; a < buckets.length; a++) { //going through the buckets
     //   // System.out.println("buckets " + x + " " + buckets[x].toString());
-      if (buckets[x].size() > 0) {
-        sorted.extend(buckets[x]);
+      if (buckets[a].size() > 0) {
+        sorted.extend(buckets[a]);
       }
     }
 
