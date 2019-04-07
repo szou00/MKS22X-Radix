@@ -224,13 +224,17 @@ public class MyLinkedList<E> {
    //in O(1) runtime, move the elements from other onto the end of this
    //The size of other is reduced to 0
    public void extend(MyLinkedList other){
+     if (size() == 0) {
+       start = other.start;
+       end = other.end;
+     }
+     else if (other.size() > 0) {
+       this.end.setNext(other.start); //the next of the end of the first list gets the start of the second list
+       other.start.setPrev(this.end); //the prev of the start of the second list gets the end of the first list
+       end = other.end; //the end of the second list becomes the end of the combined list
+     }
       size += other.size(); //size becomes the combined sizes of both original lists
-      this.end.setNext(other.start); //the next of the end of the first list gets the start of the second list
-      other.start.setPrev(this.end); //the prev of the start of the second list gets the end of the first list
-      end = other.end; //the end of the second list becomes the end of the combined list
-      other.size = 0; //the other list is made empty
-      other.end = null;
-      other.start = null;
+      other.clear();
     }
 
    //prints out the list
